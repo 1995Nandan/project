@@ -61,4 +61,75 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	@Override
+	public List<UserDTO> findByEmailAndPassword(String email, String password) {
+		EntityManager manager=null;
+		try {
+			manager=factory.createEntityManager();
+			Query query = manager.createNamedQuery("findByEmailAndPassword");
+			query.setParameter("mail", email);
+			query.setParameter("pass", password);
+			List<UserDTO> resultList = query.getResultList();
+			System.out.println(resultList.size());
+			if(resultList.isEmpty()) {
+				return null;
+			}
+			else if (!resultList.isEmpty()) {
+				return resultList;
+			}	
+		}
+		catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		finally {
+			manager.close();
+			
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean updateCountByEmail(Integer count, String email) {
+		EntityManager manager = null;
+		try {
+			manager = this.factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query2 = manager.createNamedQuery("updateCount");
+			query2.setParameter("cnt", count);
+			query2.setParameter("mail", email);
+			query2.executeUpdate();
+			transaction.commit();
+		}
+
+		catch (PersistenceException p) {
+			p.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean updateStatusByEmail(String email, String status) {
+
+		EntityManager manager = null;
+		try {
+			manager = this.factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query2 = manager.createNamedQuery("changeStatus");
+			query2.setParameter("stat", status);
+			query2.setParameter("mail", email);
+			query2.executeUpdate();
+			transaction.commit();
+		}
+
+		catch (PersistenceException p) {
+			p.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		return true;
+	}
 }

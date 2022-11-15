@@ -101,34 +101,20 @@ p {
 			</div>
 		</div>
 	</div>
-	<h5 style="color: red; text-align: center;">${Message}</h5>
+
+<h5 style="color: red; text-align: center;">${Message}</h5>
 	<br></br>
 	<h5 style="text-align: center;">${UserDataDTO.name}</h5>
 	<h5 style="color: green; text-align: center;">${Message1}</h5>
 	<div class="main">
-		<h4>SignUp</h4>
+		<h4>SignIn</h4>
 		<form action="login" method="post">
-
-			<label>Name</label> <input type="text" name="name" placeholder="Name">
-			<label>Email</label> <input type="email" name="email"
-				placeholder="Email"> <label>Mobile Number</label> <input
-				type="text" name="mobileNumber" placeholder="Mobile Number"><br><br>
-				</form>
-				
-				
-		<p>
-		 <input type="submit"
-				name="SignUp" value="SignUp" id="sub1" disabled="disabled"><br><br>
-				<input type="checkbox" id="termsChkbx "
-				onclick="change_button(this,'sub1')" />
-		<a href="#">Terms and Conditions</a> and <a href="#">Policy Privacy</a>
-		</p>
-		<p>
-			Already have an account?<a href="#">Login here</a>
-		</p>
-	</div>
-
-	<div class="foot">
+		
+<label>UserEmail</label> <input type="text" name="name" placeholder="Email"><br>
+<label>Password</label> <input type="text" name="name" placeholder="Password"><br><br><br>
+<input type="submit"name="SignUp" value="SignIn" id="sub1" disabled="disabled"><br><br>
+<a href="ResetPassword.jsp">Forgot Password?</a>
+<div class="foot">
 		<footer class="page-footer font-small blue">
 			<div class="footer-copyright text-center py-1">&copy;Nandan2022Copyright
 			<a href="index.jsp">Home</a>

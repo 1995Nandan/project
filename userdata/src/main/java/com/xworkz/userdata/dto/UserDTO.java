@@ -22,7 +22,10 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "userdata")
-@NamedQueries({@NamedQuery(name ="getByEmail",query="select user.email from UserDTO user where user.email=:email")})
+@NamedQueries({@NamedQuery(name="getByEmail",query="select user.userEmail from UserDTO user where user.userEmail=:email"),
+	@NamedQuery(name="findByEmailAndPassword",query="select user from UserDTO user where user.userEmail=:email And user.password =:pass"),
+	@NamedQuery(name="changeStatus", query="update UserDTO user set user.status = :stat where user.userEmail = :email"),
+	@NamedQuery(name = "updateCount", query = "update UserDTO user set user.count = :cnt where user.userEmail = :email")})
 public class UserDTO {
 
 	public UserDTO() {
@@ -41,6 +44,8 @@ public class UserDTO {
 	private String email;
 	@NotNull @NotEmpty @Length(min = 3)@Length(max = 50)
 	private String phoneno;
-
+    private  Integer count;
+    private String status;
+    private String security;
 	
 }

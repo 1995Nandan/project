@@ -23,32 +23,41 @@
 		<div class="container">
 			<div class="navabar-brand" class="nav-link"
 				style="text-transform: uppercase;">
-				<img src="images/husky.jpg" width="100" height="60">
+				<img src="images/husky.JPG" width="100" height="60">
 			</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item-active"><a href="SignUp.jsp"
 						class="nav-link">SignUp</a></li>
-					<li class="nav-item-active"><a href="#" class="nav-link">Sign-In</a></li>
+					<li class="nav-item-active"><a href="SignIn.jsp" class="nav-link">SignIn</a></li>
 				</ul>
 			</div>
 		</div>
-	</nav>
-	<h2>Project Discription</h2>
-	<ul>
-		<li>SignUp</li>
-		<li>Sign-In</li>
-		<li>Password</li>
-		<li>Forgot Pasword</li>
-	</ul>
-	<div>
-		<footer class="page-footer font-small blue">
-			<!-- Copyright -->
-			<div class="footer-copyright text-center py-3">
-				© 2022 Nandan: <a href="index.jsp">Home</a>
-			</div>
-			<!-- Copyright -->
-		</footer>
+	</nav><br><br>
+	<div style="text-align:center;">
+	<h1>Project Discription</h1><br>
+	
+	
+		<h3>SignUp Page</h3>
+	    <h3>SignIn Page</h3>
+	    <h3>Password</h3>
+		<h3>Forgot Pasword</h3>
+	
+	<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+</style>
+
+<div class="footer">
+ © 2022 Nandan: <a href="index.jsp">Home</a>
+</div>
 	</div>
 </body>
 </html>
