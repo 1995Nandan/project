@@ -8,7 +8,7 @@ public class SpringMVCConfiguration extends AbstractAnnotationConfigDispatcherSe
 		implements WebMvcConfigurer {
 
 	Class[] getServletConfigClasses = { SpringConfiguration.class, DBConfiguration.class };
-	String[] mapping = { "/" };
+	String[] mapping = {"/"};
 	
 	
 	public SpringMVCConfiguration() {

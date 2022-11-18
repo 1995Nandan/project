@@ -62,13 +62,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<UserDTO> findByEmailAndPassword(String email, String password) {
+	public List<UserDTO> findByEmailAndPassword(String email, String security) {
 		EntityManager manager=null;
 		try {
 			manager=factory.createEntityManager();
 			Query query = manager.createNamedQuery("findByEmailAndPassword");
-			query.setParameter("mail", email);
-			query.setParameter("pass", password);
+			query.setParameter("emails", email);
+			query.setParameter("pass", security);
 			List<UserDTO> resultList = query.getResultList();
 			System.out.println(resultList.size());
 			if(resultList.isEmpty()) {
@@ -97,7 +97,7 @@ public class UserDAOImpl implements UserDAO {
 			transaction.begin();
 			Query query2 = manager.createNamedQuery("updateCount");
 			query2.setParameter("cnt", count);
-			query2.setParameter("mail", email);
+			query2.setParameter("gmail", email);
 			query2.executeUpdate();
 			transaction.commit();
 		}
@@ -120,7 +120,7 @@ public class UserDAOImpl implements UserDAO {
 			transaction.begin();
 			Query query2 = manager.createNamedQuery("changeStatus");
 			query2.setParameter("stat", status);
-			query2.setParameter("mail", email);
+			query2.setParameter("email", email);
 			query2.executeUpdate();
 			transaction.commit();
 		}
@@ -132,4 +132,74 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return true;
 	}
-}
+
+	@Override
+	public Boolean updatePasswordByEmail(String security, String email) {
+		EntityManager manager = null;
+
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updatePasswordByEmail");
+			query.setParameter("pass", security);
+			query.setParameter("ma", email);
+			query.executeUpdate();
+			transaction.commit();
+
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		return true;
+	}
+
+	
+
+	@Override
+	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp) {
+		EntityManager manager = null;
+
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("resetPasswordByEmail");
+			query.setParameter("passs", security);
+			query.setParameter("sts", status);
+			query.setParameter("mass", email);
+			query.executeUpdate();
+			transaction.commit();
+
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close();
+		}
+		return true;
+	}
+	
+	@Override
+	public Boolean updateOtpByEmail(Integer otp, String email) {
+		EntityManager manager=null;
+		try {
+			manager = factory.createEntityManager();
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updateOtpByEmail");
+			query.setParameter("ot", otp);
+			query.setParameter("gmail", email);
+			query.executeUpdate();
+			transaction.commit();
+		}
+		catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		finally {
+			manager.close();
+		}
+			return true;
+		}
+	}
+

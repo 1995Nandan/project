@@ -10,7 +10,7 @@ import com.xworkz.userdata.dto.UserDTO;
 import com.xworkz.userdata.service.UserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class UserController {
 				Boolean validateAndSave = userService.validateAndSave(userDTO);
 				System.out.println(validateAndSave);
 				if (validateAndSave) {
-					model.addAttribute("DTO", userDTO);
+					//model.addAttribute("DTO", userDTO);
 					model.addAttribute("mesg", "Data added succesfully");
 				} else {
 					model.addAttribute("mesg", "Not Valid");

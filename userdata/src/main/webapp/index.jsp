@@ -16,6 +16,17 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+	
+	
+	<style type="text/css">
+	body{
+	background-image:url("https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=600");
+	background-repeat:no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: 100%; }
+	
+	</style>
 </head>
 <body>
 
@@ -23,8 +34,9 @@
 		<div class="container">
 			<div class="navabar-brand" class="nav-link"
 				style="text-transform: uppercase;">
-				<img src="images/husky.JPG" width="100" height="60">
-			</div>
+				
+				<img src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png"
+					width="100" height="50">	</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item-active"><a href="SignUp.jsp"
@@ -41,7 +53,8 @@
 		<h3>SignUp Page</h3>
 	    <h3>SignIn Page</h3>
 	    <h3>Password</h3>
-		<h3>Forgot Pasword</h3>
+		<h3>Forgot Password</h3>
+		<h3>Reset Password</h3>
 	
 	<style>
 .footer {

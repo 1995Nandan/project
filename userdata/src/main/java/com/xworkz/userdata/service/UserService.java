@@ -1,3 +1,4 @@
+
 package com.xworkz.userdata.service;
 
 import java.util.*;
@@ -19,5 +20,24 @@ public interface UserService {
 	public void updateCountByEmail(Integer count,String email);
 	
 	public void updateStatus(String email,String status);
+	
+	 default	Boolean updatePasswordByEmail(String security,String email) {
+			return null;
+		}
+		
+		 default	Integer otpGeneration() {
+			return null;
+		}
+		
+		 default	Boolean updateOtpByEmail(String email,UserDTO userDTO) {
+			return null;
+		}
+		
+		 default	Boolean resetPasswordByEmail(String email,String security,Integer otp, UserDTO userDTO) {
+			return null;
+		}
+	
+	
+	
 	
 }
