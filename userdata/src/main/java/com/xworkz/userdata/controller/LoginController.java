@@ -47,6 +47,7 @@ public class LoginController {
 			} else {
 				System.out.println("Welcome To Home Page!");
 				model.addAttribute("Msg", userDTO.getUsername() + "WelCome to your profile");
+				model.addAttribute("UserDTO",findByEmailAndPassword);
 				return "home";
 			}
 			

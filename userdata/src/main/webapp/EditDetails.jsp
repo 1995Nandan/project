@@ -12,19 +12,9 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<style type="text/css">
-	body{
-	background-image:url("https://images.pexels.com/photos/243971/pexels-photo-243971.jpeg");
-	background-repeat:no-repeat;
-	width: 100%;
-	height: 100%;
-	background-size: 100%; }
-	
-	</style>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width-divice-width,initial-scale-1">
-<title>SignUp Page</title>
+<title>Edit Details</title>
 <script type="text/javascript">
 	function change_button(checkbx, button_id) {
 		var btn = document.getElementById(button_id);
@@ -37,35 +27,35 @@
 </script>
 <style type="text/css">
 body {
-	background-color: #344a72;
+	background-image:
+		url("https://images.pexels.com/photos/593322/pexels-photo-593322.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+	background-size : 100%; background-repeat : no-repeat;
 	font-family: 'Roboto', sans-serif;
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
-
 .main {
 	width: 350px;
-	height: 450px;
+	height: 500px;
 	margin: auto;
 	background-color: white;
 	border-radius: 3px;
 	padding-top: -10px;
+	background-repeat: round;
 }
-
 h4 {
 	text-align: center;
 	padding-top: 20px;
 }
-
 form {
 	width: 300px;
 	margin-left: 20px;
 }
-
 form label {
 	display: flex;
-	margin-top: 5px;
+	margin-top: 0px;
 	font-size: 10x;
 }
-
 form input {
 	width: 100%;
 	padding: 3px;
@@ -74,23 +64,20 @@ form input {
 	border-radius: 6px;
 	outline: none;
 }
-
 input[type="submit"] {
 	width: 320px;
 	height: 35px;
-	margin-top: 5px;
+	margin-top: 1px;
 	border: none;
-	background-color: #0000ff;
+	background-color: #49c1a2;
 	color: white;
 	font-size: 18px;
 }
-
 p {
 	text-align: center;
 	padding-top: 10x;
 	font-size: 15px;
 }
-
 .foot {
 	position: fixed;
 	left: 0;
@@ -115,37 +102,39 @@ p {
 					<li class="nav-item-active"><a href="index.jsp"
 						class="nav-link" style="color: white;">Home</a></li>
 					<li class="nav-item-active"><a href="SignIn.jsp"
-						class="nav-link" style="color: white;">SignIn</a></li>
-
+						class="nav-link" style="color: white;">Sign in</a></li>
+                         
 				</ul>
 			</div>
 		</div>
 	</div>
-	<h5 style="color:white; text-align: center;">${mesg}</h5>
-	<br></br>
-	<h5 style="text-align: center;">${UserDataDTO.name}</h5>
+	<h2 style=" text-align: center; font-style: oblique;" >${message}</h2>
+	<marquee style="color: red;" scrollamount="20" >
+	<h6>***Can't Edit Your Email***</h6>
+	</marquee>
 	<div class="main">
-		<h4>SignUp</h4> 
-		<form action="user" method="post" enctype="multipart/form-data">
+	
+		<h4>Edit User Details </h4>
+		<form action="update" method="post" enctype="multipart/form-data">
+		<c:forEach items="${LoginDTO}" var="dto">
+			<label>Name</label> <input type="text" name="username" >
+			<label>Email</label> <input type="email" name="email"
+				placeholder="Enter Your Same Email" value="${dto.email}"> <label>Mobile Number</label> <input
+				type="text" name="mobileNumber" placeholder="Mobile Number">
+				
+				<label>File</label>
+				<input type="file" name="file">
 
-			<label>Name</label> <input type="text" name="username" placeholder="Name">
-			<label>Email</label> <input type="email" name="email" placeholder="Email">
-			 <label>Mobile Number</label> <input type="text" name="phoneno" placeholder="Mobile Number"><br>
-            <label>Profile Picture</label><input type="file" name="file"/> 
-			<br> <input type="submit" name="SignUp" value="SignUp" id="sub1"
-				disabled="disabled"><br>
-			<br> <input type="checkbox" id="termsChkbx "
-				onclick="change_button(this,'sub1')" />
+			<label>Agreement</label> <input type="checkbox" id="termsChkbx "
+				onclick="change_button(this,'sub1')" /> <input type="submit"
+				name="SignUp" value="Sumbit" id="sub1" disabled="disabled">
+				</c:forEach>
 		</form>
-
-
 		<p>
-
-			<a href="#">Terms and Conditions</a> and <a href="#">Policy
-				Privacy</a>
-		</p>
+			By clicking the check box ,you agree to our<br> <a href="#">Terms
+				and Conditions</a> and <a href="#">Policy Privacy</a>
 		<p>
-			Already have an account?<a href="SignIn.jsp">Login here</a>
+			Already have an account?<a href="#">Login here</a>
 		</p>
 	</div>
 

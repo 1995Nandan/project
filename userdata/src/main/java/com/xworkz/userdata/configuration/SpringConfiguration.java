@@ -22,10 +22,17 @@ public class SpringConfiguration {
 		return new InternalResourceViewResolver("/", ".jsp");
 	}
 
-	@Bean
-	public MultipartResolver multipartResolver() {
+	/*public MultipartResolver multipartResolver() {
 		System.out.println("Created:" + this.getClass().getSimpleName());
-		return new StandardServletMultipartResolver();
-	}
+		re@Bean
+	turn new StandardServletMultipartResolver();
+	}*/
 
+	@Bean
+	MultipartResolver multipartResolver() {
+		System.out.println("multipartResolver");
+		
+		return new  StandardServletMultipartResolver(); 
+		
+	}
 }

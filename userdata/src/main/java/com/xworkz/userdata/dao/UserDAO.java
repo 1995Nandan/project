@@ -23,6 +23,11 @@ public interface UserDAO {
 	
 	Boolean resetPasswordByEmail(String email,String security,String status,Integer otp);
 	
+	default Boolean updateUserDetailsByEmail(String name,String phoneno,String email,String fileName) {
+		return true;
+	}
+	
+	
 	
 
 }

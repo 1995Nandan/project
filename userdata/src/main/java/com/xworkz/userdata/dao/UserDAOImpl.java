@@ -63,27 +63,24 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<UserDTO> findByEmailAndPassword(String email, String security) {
-		EntityManager manager=null;
+		EntityManager manager = null;
 		try {
-			manager=factory.createEntityManager();
+			manager = factory.createEntityManager();
 			Query query = manager.createNamedQuery("findByEmailAndPassword");
 			query.setParameter("emails", email);
 			query.setParameter("pass", security);
 			List<UserDTO> resultList = query.getResultList();
 			System.out.println(resultList.size());
-			if(resultList.isEmpty()) {
+			if (resultList.isEmpty()) {
 				return null;
-			}
-			else if (!resultList.isEmpty()) {
+			} else if (!resultList.isEmpty()) {
 				return resultList;
-			}	
-		}
-		catch (PersistenceException e) {
+			}
+		} catch (PersistenceException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			manager.close();
-			
+
 		}
 		return null;
 	}
@@ -155,8 +152,6 @@ public class UserDAOImpl implements UserDAO {
 		return true;
 	}
 
-	
-
 	@Override
 	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp) {
 		EntityManager manager = null;
@@ -179,10 +174,10 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public Boolean updateOtpByEmail(Integer otp, String email) {
-		EntityManager manager=null;
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			EntityTransaction transaction = manager.getTransaction();
@@ -192,14 +187,35 @@ public class UserDAOImpl implements UserDAO {
 			query.setParameter("gmail", email);
 			query.executeUpdate();
 			transaction.commit();
-		}
-		catch (PersistenceException e) {
+		} catch (PersistenceException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			manager.close();
 		}
-			return true;
-		}
+		return true;
 	}
 
+	@Override
+	public Boolean updateUserDetailsByEmail(String username, String phoneno, String email, String fileName) {
+		EntityManager Manager = factory.createEntityManager();
+		{
+			try {
+				EntityTransaction transaction = manager.getTransaction();
+				transaction.begin();
+				Query query = manager.createNamedQuery("updateUserDetailsByEmail");
+				query.setParameter("names", username);
+				query.setParameter("number", phoneno);
+				query.setParameter("mails", email);
+				query.setParameter("file", fileName);
+				query.executeUpdate();
+				transaction.commit();
+			} catch (PersistenceException e) {
+				e.printStackTrace();
+			} finally {
+				manager.close();
+			}
+		}
+
+		return true;
+	}
+}

@@ -27,6 +27,7 @@ public class DBConfiguration {
 
 		HashMap<String, Object> jpaProperties = new HashMap<String, Object>();
 		jpaProperties.put("hibernate.show_sql", true);
+		jpaProperties.put("hibernate.properties_sql", true);
 
 		factoryBean.setJpaPropertyMap(jpaProperties);
 		return factoryBean;

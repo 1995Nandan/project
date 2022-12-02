@@ -1,7 +1,10 @@
 package com.xworkz.userdata.service;
 
 import java.util.*;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -80,13 +83,13 @@ public class UserServiceImpl implements UserService {
 		String to = email;
 
 		// Sender's email ID needs to be mentioned
-		String from = "manojhj.xworkz@outlook.com";
+		String from = "nandansk925@gmail.com";
 
 		// Assuming you are sending email from through Out LooK smtp
 		String host = "smtp.office365.com";
 
 		// password for the Mail
-		String pass = "Manoj7204250720";
+		String pass = "nandansonu225";
 
 		// Get system properties
 		Properties properties = System.getProperties();
@@ -270,6 +273,92 @@ public class UserServiceImpl implements UserService {
 
 		}
 		return true;
+
+	}
+
+	@Override
+	public Boolean sendOTPMail(String otpMail, Integer otp, UserDTO userDTO) {
+		String to = otpMail;
+
+		String from = "nandansk925@gmail.com";
+
+		String host = "smtp.office365.com";
+
+		String password = "nandansonu225";
+
+		Properties properties = System.getProperties();
+		properties.put("mail.smtp.host", host);
+		properties.put("mail.smtp.port", "587");
+		// properties.put("mail.smtp.ssl.enable", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.debug", "true");
+		properties.put("mail.transport.protocol", "smtp");
+
+		Session session = Session.getInstance(properties, new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, password);
+
+			}
+
+		});
+		session.setDebug(true);
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			String email = userDTO.getEmail();
+			Integer otp2 = userDTO.getOtp();
+			message.setSubject("OTP For Reset Password");
+			message.setText(
+					"Hi" + " " + email + " " + "your OTP for Password Reset is" + " " + " " + otp2 + " " + "Thank You");
+
+			System.out.println("Sending........");
+
+			Transport.send(message);
+
+			System.out.println("Sent message Succesfully");
+			System.out.println("MessagingException may occurs");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+
+		return true;
+	}
+
+	@Override
+	public String EncryptedPassword() {
+		System.out.println("Running EncryptedPassword ");
+		// logger.info("Running EncryptedPassword ");
+		Encoder encoder = Base64.getEncoder();
+		String password = password();
+		String encodeToString = encoder.encodeToString(password.getBytes());
+		System.out.println("EncryptedPassword" + " " + encodeToString);
+		return encodeToString;
+	}
+
+	@Override
+	public String EncryptPassword(String password) {
+		System.out.println("Running EncryptPassword ");
+		// logger.info("Running EncryptedPassword ");
+		Encoder encoder = Base64.getEncoder();
+		String passwords = password;
+		String encodeToString = encoder.encodeToString(passwords.getBytes());
+		System.out.println("EncryptedPassword" + " " + encodeToString);
+		return encodeToString;
+
+	}
+
+	@Override
+	public String DecryptedPassword(String encryptPassword) {
+		System.out.println("Running DecryptedPassword");
+		// logger.info("Running DecryptedPassword");
+		Decoder decoder = Base64.getDecoder();
+		byte[] decode = decoder.decode(encryptPassword);
+		String decrypt = new String(decode);
+		System.out.println("DecryptedPassword" + decrypt);
+		return decrypt;
 
 	}
 

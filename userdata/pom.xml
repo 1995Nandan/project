@@ -9,6 +9,8 @@
 		<lambok.version>1.18.24</lambok.version>
 		<mysql.version>8.0.30</mysql.version>
 		<quarkus.version>1.13.7.Final</quarkus.version>
+		<sunmail.version>1.6.2</sunmail.version>
+		<hibernate.version>5.6.12.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
@@ -32,7 +34,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.6.12.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
@@ -55,7 +57,7 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.6.2</version>
+			<version>${sunmail.version}</version>
 		</dependency>
 	</dependencies>
 	<packaging>war</packaging>
