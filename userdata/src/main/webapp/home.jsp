@@ -58,14 +58,14 @@
 				<div>
 					<ul class="nav navbar-nav navbar-right">
 
-						<li class="nav-item-active"><a href="Signin.jsp"
+						<li class="nav-item-active"><a href="SignIn.jsp"
 							class="nav-link" style="color: white;">SignIn</a></li>
 							
 						<li class="nav-item-active"><a href="findProduct?email=${dto.email}"
 							class="nav-link" style="color: white;">Product</a></li>	
 
 						<div class="navabar-brand">
-							<img src="status/image?fileName=${UserDTO.fileName}" width="100"
+							<img src="login/image?fileName=${UserDTO.fileName}" width="100"
 								height="50" style="border-radius: 80px" />
 						</div>
 

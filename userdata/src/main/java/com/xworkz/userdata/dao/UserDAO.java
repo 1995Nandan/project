@@ -27,7 +27,7 @@ public interface UserDAO {
 		return true;
 	}
 	
-	default Boolean updatePhoneNoAndNameByEmail(String phoneno,String username,String email) {
+	default Boolean updatePhoneNoAndNameByEmail(String phoneno,String username,String email,String fileName) {
 		return true;
 	}
 	

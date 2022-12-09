@@ -124,6 +124,8 @@ p {
 			<label>Mobile Number</label> <input
 				type="text" name="mobileNumber" placeholder="Mobile Number">
 				
+				<label>FileName</label><input type="file" name="file"/>
+				
 				
 
 			<label>Agreement</label> <input type="checkbox" id="termsChkbx "

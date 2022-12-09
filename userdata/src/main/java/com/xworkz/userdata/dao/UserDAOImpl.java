@@ -213,7 +213,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public Boolean updatePhoneNoAndNameByEmail(String phoneno, String username, String email) {
+	public Boolean updatePhoneNoAndNameByEmail(String phoneno, String username, String email,String fileName) {
 		EntityManager Manager = factory.createEntityManager();
 		{
 			try {
@@ -223,6 +223,7 @@ public class UserDAOImpl implements UserDAO {
 				query.setParameter("name", username);
 				query.setParameter("no", phoneno);
 				query.setParameter("mail", email);
+				query.setParameter("file", fileName);
 				System.out.println(phoneno+username+email+"manoj is checking the issue ");
 				int executeUpdate = query.executeUpdate();
 				System.out.println(executeUpdate);

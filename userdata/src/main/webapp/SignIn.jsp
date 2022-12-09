@@ -106,8 +106,8 @@ p {
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item-active"><a href="index.jsp"
 						class="nav-link" style="color: white;">Home</a></li>
-					<li class="nav-item-active"><a href="SignIn.jsp"
-						class="nav-link" style="color: white;">SignIn</a></li>
+					<li class="nav-item-active"><a href="SignUp.jsp"
+						class="nav-link" style="color: white;">SignUP</a></li>
 
 				</ul>
 			</div>
