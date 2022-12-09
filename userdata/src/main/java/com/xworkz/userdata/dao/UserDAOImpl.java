@@ -40,19 +40,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<UserDTO> getByEmail(String email) {
+	public UserDTO getByEmail(String email) {
 		try {
 			manager = factory.createEntityManager();
 			Query query = manager.createNamedQuery("getByEmail");
 			query.setParameter("email", email);
-			List<UserDTO> list = query.getResultList();
-			System.out.println(list);
-			if (list.isEmpty()) {
-				return null;
-			} else if (!list.isEmpty()) {
-				return list;
+			Object result = query.getSingleResult();
+			UserDTO userDTO = (UserDTO) result;
+			return userDTO;
 
-			}
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		} finally {
@@ -62,20 +58,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<UserDTO> findByEmailAndPassword(String email, String security) {
+	public UserDTO findByEmailAndPassword(String email, String security) {
 		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			Query query = manager.createNamedQuery("findByEmailAndPassword");
 			query.setParameter("emails", email);
 			query.setParameter("pass", security);
-			List<UserDTO> resultList = query.getResultList();
-			System.out.println(resultList.size());
-			if (resultList.isEmpty()) {
-				return null;
-			} else if (!resultList.isEmpty()) {
-				return resultList;
-			}
+			Object result = query.getSingleResult();
+			UserDTO userDTO = (UserDTO) result;
+			return userDTO;
+
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 		} finally {
@@ -216,6 +209,31 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 
+		return true;
+	}
+	
+	@Override
+	public Boolean updatePhoneNoAndNameByEmail(String phoneno, String username, String email) {
+		EntityManager Manager = factory.createEntityManager();
+		{
+			try {
+				EntityTransaction transaction = manager.getTransaction();
+				transaction.begin();
+				Query query = manager.createNamedQuery("updateUserDetailsByEmail");
+				query.setParameter("name", username);
+				query.setParameter("no", phoneno);
+				query.setParameter("mail", email);
+				query.executeUpdate();
+				transaction.commit();
+			} catch (PersistenceException e) {
+				e.printStackTrace();
+			} finally {
+				manager.close();
+			}
+		}
+
+		
+		
 		return true;
 	}
 }

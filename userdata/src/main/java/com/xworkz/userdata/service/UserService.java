@@ -9,11 +9,11 @@ public interface UserService {
 
 	public Boolean validateAndSave(UserDTO userDTO);
 
-	public Boolean getByEmail(String email);
+	public UserDTO getByEmail(String email);
 
 	public Boolean sendEmail(String email, String password, UserDTO userDTO);
 
-	public List<UserDTO> findByEmailAndPassword(String email, String password, UserDTO userDTO);
+	public UserDTO findByEmailAndPassword(String email, String password, UserDTO userDTO);
 
 	public String password();
 

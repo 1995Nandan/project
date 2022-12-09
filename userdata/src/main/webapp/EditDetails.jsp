@@ -28,7 +28,7 @@
 <style type="text/css">
 body {
 	background-image:
-		url("https://images.pexels.com/photos/593322/pexels-photo-593322.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+		url("https://images.pexels.com/photos/243971/pexels-photo-243971.jpeg");
 	background-size : 100%; background-repeat : no-repeat;
 	font-family: 'Roboto', sans-serif;
 	background-size: 100%;
@@ -102,39 +102,40 @@ p {
 					<li class="nav-item-active"><a href="index.jsp"
 						class="nav-link" style="color: white;">Home</a></li>
 					<li class="nav-item-active"><a href="SignIn.jsp"
-						class="nav-link" style="color: white;">Sign in</a></li>
+						class="nav-link" style="color: white;">SignIn</a></li>
                          
 				</ul>
 			</div>
 		</div>
 	</div>
 	<h2 style=" text-align: center; font-style: oblique;" >${message}</h2>
-	<marquee style="color: red;" scrollamount="20" >
+	<marquee style="color: white;" scrollamount="20" >
 	<h6>***Can't Edit Your Email***</h6>
 	</marquee>
 	<div class="main">
 	
 		<h4>Edit User Details </h4>
-		<form action="update" method="post" enctype="multipart/form-data">
-		<c:forEach items="${LoginDTO}" var="dto">
-			<label>Name</label> <input type="text" name="username" >
-			<label>Email</label> <input type="email" name="email"
-				placeholder="Enter Your Same Email" value="${dto.email}"> <label>Mobile Number</label> <input
+		<form action="edit" method="post" enctype="multipart/form-data">
+		
+          <label>Email</label> <input type="email" name="email" value="${msg.email}" disabled="disabled">
+          <input type="email" name="email"placeholder="Enter Your Same Email" value="${msg.email}" hidden="">
+			<label>Name</label> <input type="text" name="username" placeholder="Name" >
+			 
+			<label>Mobile Number</label> <input
 				type="text" name="mobileNumber" placeholder="Mobile Number">
 				
-				<label>File</label>
-				<input type="file" name="file">
+				
 
 			<label>Agreement</label> <input type="checkbox" id="termsChkbx "
 				onclick="change_button(this,'sub1')" /> <input type="submit"
 				name="SignUp" value="Sumbit" id="sub1" disabled="disabled">
-				</c:forEach>
+		
 		</form>
 		<p>
 			By clicking the check box ,you agree to our<br> <a href="#">Terms
 				and Conditions</a> and <a href="#">Policy Privacy</a>
 		<p>
-			Already have an account?<a href="#">Login here</a>
+			Already have an account?<a href="SignIn.jsp">Login here</a>
 		</p>
 	</div>
 

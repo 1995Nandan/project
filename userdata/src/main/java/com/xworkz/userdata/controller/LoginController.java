@@ -30,18 +30,18 @@ public class LoginController {
 	public String onRequest(Model model, UserDTO userDTO) {
 
 		System.out.println("Calling SignIn Method");
-		List<UserDTO> findByEmailAndPassword = userService.findByEmailAndPassword(userDTO.getEmail(),
+		UserDTO findByEmailAndPassword = (UserDTO) userService.findByEmailAndPassword(userDTO.getEmail(),
 				userDTO.getSecurity(), userDTO);
 		System.out.println(findByEmailAndPassword);
 
 		if (findByEmailAndPassword == null) {
-			model.addAttribute("Msg", "Incorrect credentials Entered");
+			model.addAttribute("Msg", "Password Wrong");
 			count++;
 			if(count == 3) {
 				model.addAttribute("Msg","Your Account has Been Blocked");
 			}
 		} else {
-			if (findByEmailAndPassword.get(0).getStatus().equals("Blocked")) {
+			if (findByEmailAndPassword.getStatus().equals("Blocked")) {
 				model.addAttribute("Msg", "your Account Has Been Locked");
 
 			} else {

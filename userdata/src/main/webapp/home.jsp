@@ -24,7 +24,7 @@
 	font-size: 130%;
 	font-weight: 500;
 }
-body {
+.body {
 	background-image:
 		url("https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 	background-repeat: no-repeat;
@@ -48,7 +48,6 @@ body {
 </head>
 
 <body style="background-color: #7e9a9a;">
-	<c:forEach items="${UserDTO}" var="dto">
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 			<div class="container">
 				<div class="navabar-brand">
@@ -66,7 +65,7 @@ body {
 							class="nav-link" style="color: white;">Product</a></li>	
 
 						<div class="navabar-brand">
-							<img src="status/image?fileName=${dto.fileName}" width="100"
+							<img src="status/image?fileName=${UserDTO.fileName}" width="100"
 								height="50" style="border-radius: 80px" />
 						</div>
 
@@ -78,20 +77,19 @@ body {
 
 		</nav>
 		<br></br>
-		<h6 style="text-align: center; font-style: oblique; font-size: 160%;">${message}</h6>
+			<h6 style="text-align: center; font-style: oblique; font-size: 160%;">${message}</h6>
 		<br>
 		<h6 style="text-align: center; font-style: oblique; font-size: 160%;">Your
 			Entered Details</h6>
 		<div class="Dto">
-			<br></br> Name:${dto.username} <br></br> Email:${dto.email} <br></br>
-			Mobile Number:${dto.phoneno}
+			<br></br> Name:${UserDTO.username} <br></br> Email:${UserDTO.email} <br></br>
+			Mobile Number:${UserDTO.phoneno}
 		</div>
 	<br></br>
 	<div class="edit">
-		<a href="display?email=${dto.email}"><input type="submit"
-			value="Edit-Deatils" style="border-radius: 7px;"></a>
+		<a href="edit?email=${UserDTO.email}"><button>Edit</button></a>
+		
 	</div>
-</c:forEach>
 	<div class="foot">
 		<footer class="page-footer font-small blue">
 			<div class="footer-copyright text-center py-1">

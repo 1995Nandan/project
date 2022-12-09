@@ -63,13 +63,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean getByEmail(String email) {
+	public UserDTO getByEmail(String email) {
 		System.out.println("Calling findByEmail Method");
-		List<UserDTO> byEmail = userDAO.getByEmail(email);
+		UserDTO byEmail = userDAO.getByEmail(email);
 		if (byEmail != null) {
-			return false;
+			return byEmail;
 		} else {
-			return true;
+			return null;
 		}
 
 	}
@@ -145,10 +145,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDTO> findByEmailAndPassword(String email, String security, UserDTO userDTO) {
+	public UserDTO findByEmailAndPassword(String email, String security, UserDTO userDTO) {
 
-		List<UserDTO> findByEmailAndPassword = userDAO.findByEmailAndPassword(userDTO.getEmail(),
-				userDTO.getSecurity());
+		UserDTO findByEmailAndPassword = userDAO.findByEmailAndPassword(userDTO.getEmail(), userDTO.getSecurity());
 		System.out.println("Email and Password in Service" + findByEmailAndPassword);
 		if (findByEmailAndPassword != null) {
 			this.count = 0;
@@ -207,7 +206,7 @@ public class UserServiceImpl implements UserService {
 			System.out.println("Password length is incorrect and plz match the condtion");
 		} else {
 			System.out.println("Security is valid");
-			List<UserDTO> byEmail = userDAO.getByEmail(email);
+			UserDTO byEmail = userDAO.getByEmail(email);
 
 			if (byEmail == null) {
 				System.out.println("findByEmail is null");
@@ -251,10 +250,10 @@ public class UserServiceImpl implements UserService {
 		System.out.println("Running resetPasswordByEmail");
 		System.out.println("%%%%%%%%%%%%%");
 		System.out.println(otp);
-		List<UserDTO> findByEmail = userDAO.getByEmail(email);
-		System.out.println(findByEmail.size());
+		UserDTO findByEmail = userDAO.getByEmail(email);
+		System.out.println(findByEmail);
 		if (findByEmail != null) {
-			Integer otp2 = findByEmail.get(0).getOtp();
+			Integer otp2 = findByEmail.getOtp();
 			System.out.println(otp2);
 			if (otp2.equals(otp)) {
 				System.out.println("Comparing otp2 with otp");

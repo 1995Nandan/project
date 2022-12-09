@@ -9,9 +9,9 @@ public interface UserDAO {
 	
 	public Boolean save(UserDTO userDTO);
 	
-	public List<UserDTO>getByEmail(String email);
+	public UserDTO getByEmail(String email);
 	
-	public List<UserDTO>findByEmailAndPassword(String email,String security);
+	public UserDTO findByEmailAndPassword(String email,String security);
 	
 	public Boolean updateCountByEmail(Integer count,String email);
 	
@@ -27,6 +27,9 @@ public interface UserDAO {
 		return true;
 	}
 	
+	default Boolean updatePhoneNoAndNameByEmail(String phoneno,String username,String email) {
+		return true;
+	}
 	
 	
 

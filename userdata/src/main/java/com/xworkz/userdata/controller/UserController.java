@@ -48,8 +48,8 @@ public class UserController {
 		System.out.println(userDTO);
 
 		if (userDTO != null) {
-			Boolean findByEmail = userService.getByEmail(userDTO.getEmail());
-			if (!findByEmail) {
+			UserDTO findByEmail = userService.getByEmail(userDTO.getEmail());
+			if (findByEmail!=null) {
 				model.addAttribute("mesg", "Email already Exist,So unable to Save");
 
 			} else {
