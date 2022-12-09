@@ -217,18 +217,20 @@ public class UserDAOImpl implements UserDAO {
 		EntityManager Manager = factory.createEntityManager();
 		{
 			try {
-				EntityTransaction transaction = manager.getTransaction();
+				EntityTransaction transaction = Manager.getTransaction();
 				transaction.begin();
-				Query query = manager.createNamedQuery("updateUserDetailsByEmail");
+				Query query = Manager.createNamedQuery("updatePhoneNoAndNameByEmail");
 				query.setParameter("name", username);
 				query.setParameter("no", phoneno);
 				query.setParameter("mail", email);
-				query.executeUpdate();
+				System.out.println(phoneno+username+email+"manoj is checking the issue ");
+				int executeUpdate = query.executeUpdate();
+				System.out.println(executeUpdate);
 				transaction.commit();
 			} catch (PersistenceException e) {
 				e.printStackTrace();
 			} finally {
-				manager.close();
+				Manager.close();
 			}
 		}
 

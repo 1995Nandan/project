@@ -24,7 +24,7 @@ public class UpdateController {
 	@PostMapping
 	String update(UserDTO dto) {
 		
-	Boolean updatePhoneNoAndNameByEmail = dao.updatePhoneNoAndNameByEmail(dto.getUsername(), dto.getPhoneno(),dto.getFileName());
+	Boolean updatePhoneNoAndNameByEmail = dao.updatePhoneNoAndNameByEmail(dto.getPhoneno(), dto.getUsername(),dto.getEmail());
 	System.out.println(updatePhoneNoAndNameByEmail);
 		return "SignIn";
 		
