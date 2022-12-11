@@ -246,7 +246,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO) {
+	public Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO,String reSecurity) {
 		System.out.println("Running resetPasswordByEmail");
 		System.out.println("%%%%%%%%%%%%%");
 		System.out.println(otp);
@@ -260,7 +260,7 @@ public class UserServiceImpl implements UserService {
 				userDTO.setSecurity(security);
 				userDTO.setStatus("unBlocked");
 				Boolean resetPasswordByEmail = userDAO.resetPasswordByEmail(email, userDTO.getSecurity(),
-						userDTO.getStatus(), userDTO.getOtp());
+						userDTO.getStatus(), userDTO.getOtp(),userDTO.getReSecurity());
 				if (resetPasswordByEmail) {
 					System.out.println("ResetPassword");
 				} else {

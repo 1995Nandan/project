@@ -63,7 +63,8 @@ public class LoginController {
 		}
 		return "SignIn";
 	}
-@GetMapping(value = {"/image","/login/image"})
+
+	@GetMapping(value = { "/image", "/login/image" })
 	void sendfile(@RequestParam String fileName, HttpServletResponse response) throws IOException {
 		File file = new File("C://Users//admin//Desktop//MANOJ/" + fileName);
 		String fromName = URLConnection.guessContentTypeFromName(file.getName());

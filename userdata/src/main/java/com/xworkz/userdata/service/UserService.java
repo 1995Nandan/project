@@ -3,6 +3,7 @@ package com.xworkz.userdata.service;
 
 import java.util.*;
 
+import com.xworkz.userdata.dto.ProductDTO;
 import com.xworkz.userdata.dto.UserDTO;
 
 public interface UserService {
@@ -33,7 +34,8 @@ public interface UserService {
 		return null;
 	}
 
-	default Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO) {
+	default Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO,
+			String reSecurity) {
 		return null;
 	}
 
@@ -60,5 +62,7 @@ public interface UserService {
 		return null;
 
 	}
+
+	
 
 }

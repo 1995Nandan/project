@@ -30,7 +30,7 @@ import lombok.ToString;
 		@NamedQuery(name = "changeStatus", query = "update UserDTO user set user.status = :stat where user.email = :email"),
 		@NamedQuery(name = "updateCount", query = "update UserDTO user set user.count = :cnt where user.email = :gmail"),
 		@NamedQuery(name = "updatePasswordByEmail", query = "update UserDTO com set com.security=:pass where com.email=:ma"),
-		@NamedQuery(name = "resetPasswordByEmail", query = "update UserDTO as com set com.security=:passs, com.status=:sts where com.email=:mass"),
+		@NamedQuery(name = "resetPasswordByEmail", query = "update UserDTO as com set com.security=:passs, com.status=:sts,com.reSecurity=:rs where com.email=:mass"),
 		@NamedQuery(name = "updateOtpByEmail", query = "update UserDTO com set com.otp=:ot where com.email=:gmail"),
         @NamedQuery(name="updateUserDetailsByEmail",query = "update UserDTO as com set com.username=:names,com.phoneno=:number,com.fileName=:file where com.email=:mails"),
         @NamedQuery(name = "findAll", query = "Select com from UserDTO  com"),
@@ -70,6 +70,8 @@ public class UserDTO {
 	private LocalDate date;
 	private LocalTime time;
 	private String fileName;
+	private String reSecurity;
+	
 	
 
 }

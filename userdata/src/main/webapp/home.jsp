@@ -61,7 +61,7 @@
 						<li class="nav-item-active"><a href="SignIn.jsp"
 							class="nav-link" style="color: white;">SignIn</a></li>
 							
-						<li class="nav-item-active"><a href="findProduct?email=${dto.email}"
+						<li class="nav-item-active"><a href="ToAddProduct.jsp?email=${dto.email}"
 							class="nav-link" style="color: white;">Product</a></li>	
 
 						<div class="navabar-brand">
@@ -77,6 +77,7 @@
 
 		</nav>
 		<br></br>
+	
 			<h6 style="text-align: center; font-style: oblique; font-size: 160%;">${message}</h6>
 		<br>
 		<h6 style="text-align: center; font-style: oblique; font-size: 160%;">Your

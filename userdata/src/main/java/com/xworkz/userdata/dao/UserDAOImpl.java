@@ -146,7 +146,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp) {
+	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp,String reSecurity) {
 		EntityManager manager = null;
 
 		try {
@@ -157,6 +157,7 @@ public class UserDAOImpl implements UserDAO {
 			query.setParameter("passs", security);
 			query.setParameter("sts", status);
 			query.setParameter("mass", email);
+			query.setParameter("rs", reSecurity);
 			query.executeUpdate();
 			transaction.commit();
 

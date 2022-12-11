@@ -31,9 +31,9 @@ public class ResetPasswordController {
 
 	@PostMapping("otp")
 	public String UpdatePasswordAndStatus(UserDTO userDTO, Model model) {
-
+if(userDTO.getSecurity().equals(userDTO.getReSecurity())) {
 		Boolean resetPassword = userServivce.resetPasswordByEmail(userDTO.getEmail(), userDTO.getSecurity(),
-				userDTO.getOtp(), userDTO);
+				userDTO.getOtp(),userDTO,userDTO.getReSecurity());
 		if (resetPassword) {
 			model.addAttribute("Msg", "Password Updated");
 			return "SignIn";
@@ -41,6 +41,12 @@ public class ResetPasswordController {
 			model.addAttribute("Msg", "Unable To Update Password");
 			return "ConfirmPassword";
 		}
+}
+else {
+	
+	model.addAttribute("msg","you passward doesnot match");
+	return "ConfirmPassword";
+}
 
 	}
 
