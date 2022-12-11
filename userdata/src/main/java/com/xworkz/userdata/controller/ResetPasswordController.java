@@ -19,8 +19,11 @@ public class ResetPasswordController {
 
 	@GetMapping
 	public String generateOTP(UserDTO userDTO, Model model) {
+		System.out.println(userDTO.getOtp()+"+++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------");
 
-		Boolean updateOTPByEmail = userServivce.updateOtpByEmail(userDTO.getEmail(), userDTO);
+		Boolean updateOTPByEmail = userServivce.updateOtpByEmail(userDTO.getEmail(),
+		 userDTO);
+		
 		if (updateOTPByEmail) {
 			return "ConfirmPassword";
 		} else {
@@ -31,22 +34,24 @@ public class ResetPasswordController {
 
 	@PostMapping("otp")
 	public String UpdatePasswordAndStatus(UserDTO userDTO, Model model) {
-if(userDTO.getSecurity().equals(userDTO.getReSecurity())) {
-		Boolean resetPassword = userServivce.resetPasswordByEmail(userDTO.getEmail(), userDTO.getSecurity(),
-				userDTO.getOtp(),userDTO,userDTO.getReSecurity());
-		if (resetPassword) {
-			model.addAttribute("Msg", "Password Updated");
-			return "SignIn";
+	
+		
+		if (userDTO.getSecurity().equals(userDTO.getReSecurity())) {
+			Boolean resetPassword = userServivce.resetPasswordByEmail(userDTO.getEmail(), userDTO.getSecurity(),
+					userDTO.getOtp(), userDTO, userDTO.getReSecurity());
+			
+			if (resetPassword) {
+				model.addAttribute("Msg", "Password Updated");
+				return "SignIn";
+			} else {
+				model.addAttribute("Msg", "Unable To Update Password");
+				return "ConfirmPassword";
+			}
 		} else {
-			model.addAttribute("Msg", "Unable To Update Password");
+
+			model.addAttribute("msg", "you passward doesnot match");
 			return "ConfirmPassword";
 		}
-}
-else {
-	
-	model.addAttribute("msg","you passward doesnot match");
-	return "ConfirmPassword";
-}
 
 	}
 

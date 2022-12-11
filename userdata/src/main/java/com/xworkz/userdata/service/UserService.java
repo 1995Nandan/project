@@ -1,6 +1,8 @@
 
 package com.xworkz.userdata.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import com.xworkz.userdata.dto.ProductDTO;
@@ -63,6 +65,9 @@ public interface UserService {
 
 	}
 
-	
+	default Boolean updateOtpDateAndTimeByMail(Integer otp, LocalDate date, LocalTime time, String email,UserDTO userDTO) {
+
+		return true;
+	}
 
 }

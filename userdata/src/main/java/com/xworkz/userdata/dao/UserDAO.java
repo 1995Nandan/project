@@ -1,5 +1,7 @@
 package com.xworkz.userdata.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import com.xworkz.userdata.dto.UserDTO;
@@ -30,7 +32,10 @@ public interface UserDAO {
 	default Boolean updatePhoneNoAndNameByEmail(String phoneno,String username,String email,String fileName) {
 		return true;
 	}
-	
+	default Boolean updateOtpDateAndTimeByMail(Integer otp,LocalDate date,LocalTime time,String email ) {
+		
+		return true;
+	}
 	
 
 }

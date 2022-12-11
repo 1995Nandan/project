@@ -34,8 +34,8 @@ import lombok.ToString;
 		@NamedQuery(name = "updateOtpByEmail", query = "update UserDTO com set com.otp=:ot where com.email=:gmail"),
         @NamedQuery(name="updateUserDetailsByEmail",query = "update UserDTO as com set com.username=:names,com.phoneno=:number,com.fileName=:file where com.email=:mails"),
         @NamedQuery(name = "findAll", query = "Select com from UserDTO  com"),
-        @NamedQuery(name="updatePhoneNoAndNameByEmail",query = "update UserDTO as com set com.username=:name,com.phoneno=:no,com.fileName=:file where com.email=:mail")})
-
+        @NamedQuery(name="updatePhoneNoAndNameByEmail",query = "update UserDTO as com set com.username=:name,com.phoneno=:no,com.fileName=:file where com.email=:mail"),
+        @NamedQuery(name = "updateOtpDateAndTimeByMail",query = "update UserDTO com set com.otp=:ot,com.date=:dt,com.time=:tm where com.email=:mail")})
 public class UserDTO {
 
 	public UserDTO() {

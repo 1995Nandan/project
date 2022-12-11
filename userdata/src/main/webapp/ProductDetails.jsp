@@ -22,78 +22,95 @@ body {
 		url("https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=600");
 	background-repeat: no-repeat;
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	background-size: 100%;
 }
 </style>
-
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="container">
-			<div class="navbar-brand" class="nav-link">
-				<img
-					src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png"
-					width="100" height="50">
-			</div>
+			<div class="navabar-brand" class="nav-link"
+				style="text-transform: uppercase;">
+				
+				<img src="https://raw.githubusercontent.com/X-workzDev01/xworkzwebsite/master/src/main/webapp/assets/images/Logo.png"
+					width="100" height="50">	</div>
 			<div>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="nav-item-active"><a href="index.jsp"
-						class="nav-link" style="color: white;">Home</a></li>
-					<li class="nav-item-active"><a href="ToAddProduct.jsp"
-						class="nav-link" style="color: white;">Add Product</a></li>
-
+						class="nav-link">Home</a></li>
+					<li class="nav-item-active"><a href="ToAddProduct.jsp" class="nav-link">AddProduct</a></li>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</nav><br><br>
+	
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="add/add">
+		<input type="text" name="productName" /> <input type="submit"
+			value="search" />
+			</form>
+	
+	<style>
+	table,th,td{
+	border:1px solid black;
+	border-collapse: collapse;
+	}
+	table {
+	width: 100%;
+}
+th {
+	text-align: left;
+}
+th,td {
+padding: 12px;
+	
+}
+	</style>
 
 
 	${size} ${msg}
 
-	<table border="3">
-		<thead>
+	<table>
+		
+		<caption>Product Details</caption>
 			<tr>
-				<th>Id</th>
+				 <th>Id</th>
 				<th>ProductName</th>
 				<th>userEmail</th>
 				<th>category</th>
 				<th>price</th>
+				<th>stock</th>
 				<th>fileName</th>
 				<th>createdBy</th>
 				<th>createdDate</th>
 				<th>updatedBy</th>
 				<th>updatedDate</th>
-				<th>stock</th>
+				
 			</tr>
 			<c:forEach items="${all}" var="g">
-				<tr>
-					<td>${g.id}</td>
+             <tr>
+                    <td>${g.id}</td>
 					<td>${g.productName}</td>
 					<td>${g.userEmail}</td>
 					<td>${g.category}</td>
 					<td>${g.price}</td>
+					<td>${g.stock}</td>
 					<td>${g.fileName}</td>
 					<td>${g.createdBy}</td>
 					<td>${g.createdDate}</td>
 					<td>${g.updatedBy}</td>
 					<td>${g.updatedDate}</td>
-					<td>${g.stock}</td>
+					
 
 
 				</tr>
 			</c:forEach>
-
-
-		</thead>
-	</table>
-	<div class="search" >
-		<input type="text" name="productName" /> <input type="submit"
-			value="search" />
-			</div>
+			
+			
 	
-	<div class="foot">
+	</table>
+			<div class="foot">
 		<footer class="page-footer font-small blue">
 			<div class="footer-copyright text-center py-1">
 				&copy;Nandan2022Copyright <a href="index.jsp">Home</a>
@@ -102,8 +119,8 @@ body {
 
 		</footer>
 	</div>
-
-
-
+			
+		
+	
 </body>
 </html>

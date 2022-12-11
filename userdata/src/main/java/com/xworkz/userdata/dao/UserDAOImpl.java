@@ -1,5 +1,7 @@
 package com.xworkz.userdata.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -146,7 +148,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp,String reSecurity) {
+	public Boolean resetPasswordByEmail(String email, String security, String status, Integer otp, String reSecurity) {
 		EntityManager manager = null;
 
 		try {
@@ -212,9 +214,9 @@ public class UserDAOImpl implements UserDAO {
 
 		return true;
 	}
-	
+
 	@Override
-	public Boolean updatePhoneNoAndNameByEmail(String phoneno, String username, String email,String fileName) {
+	public Boolean updatePhoneNoAndNameByEmail(String phoneno, String username, String email, String fileName) {
 		EntityManager Manager = factory.createEntityManager();
 		{
 			try {
@@ -225,7 +227,7 @@ public class UserDAOImpl implements UserDAO {
 				query.setParameter("no", phoneno);
 				query.setParameter("mail", email);
 				query.setParameter("file", fileName);
-				System.out.println(phoneno+username+email+"manoj is checking the issue ");
+				System.out.println(phoneno + username + email + "manoj is checking the issue ");
 				int executeUpdate = query.executeUpdate();
 				System.out.println(executeUpdate);
 				transaction.commit();
@@ -236,8 +238,29 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 
-		
-		
+		return true;
+	}
+
+	@Override
+	public Boolean updateOtpDateAndTimeByMail(Integer otp, LocalDate date, LocalTime time, String email) {
+
+		EntityManager manager = factory.createEntityManager();
+		try {
+			EntityTransaction transaction = manager.getTransaction();
+			transaction.begin();
+			Query query = manager.createNamedQuery("updateOtpDateAndTimeByMail");
+			query.setParameter("ot", otp);
+			query.setParameter("dt", date);
+			query.setParameter("tm", time);
+			query.setParameter("mail", email);
+			query.executeUpdate();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			manager.close();
+		}
 		return true;
 	}
 }

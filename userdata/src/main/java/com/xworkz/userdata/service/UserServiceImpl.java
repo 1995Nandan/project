@@ -1,5 +1,8 @@
 package com.xworkz.userdata.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
@@ -30,6 +33,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	private LocalDateTime dateTime;
 
 	@Override
 	public Boolean validateAndSave(UserDTO userDTO) {
@@ -239,17 +243,20 @@ public class UserServiceImpl implements UserService {
 	public Boolean updateOtpByEmail(String email, UserDTO userDTO) {
 		System.out.println("Running updateOtpByEmail");
 		Integer otpGeneration = otpGeneration();
+		this.sendOTPMail(email, otpGeneration, userDTO);
 		System.out.println(otpGeneration);
-		userDTO.setOtp(otpGeneration);
-		userDAO.updateOtpByEmail(userDTO.getOtp(), userDTO.getEmail());
+		//userDTO.setOtp(otpGeneration);
+		userDAO.updateOtpByEmail(otpGeneration, userDTO.getEmail());
+		
 		return true;
 	}
 
 	@Override
-	public Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO,String reSecurity) {
+	public Boolean resetPasswordByEmail(String email, String security, Integer otp, UserDTO userDTO,
+			String reSecurity) {
 		System.out.println("Running resetPasswordByEmail");
 		System.out.println("%%%%%%%%%%%%%");
-		System.out.println(otp);
+		System.out.println(otp+"otp123456789asdfghjkl");
 		UserDTO findByEmail = userDAO.getByEmail(email);
 		System.out.println(findByEmail);
 		if (findByEmail != null) {
@@ -260,7 +267,7 @@ public class UserServiceImpl implements UserService {
 				userDTO.setSecurity(security);
 				userDTO.setStatus("unBlocked");
 				Boolean resetPasswordByEmail = userDAO.resetPasswordByEmail(email, userDTO.getSecurity(),
-						userDTO.getStatus(), userDTO.getOtp(),userDTO.getReSecurity());
+						userDTO.getStatus(), userDTO.getOtp(), userDTO.getReSecurity());
 				if (resetPasswordByEmail) {
 					System.out.println("ResetPassword");
 				} else {
@@ -311,7 +318,7 @@ public class UserServiceImpl implements UserService {
 			Integer otp2 = userDTO.getOtp();
 			message.setSubject("OTP For Reset Password");
 			message.setText(
-					"Hi" + " " + email + " " + "your OTP for Password Reset is" + " " + " " + otp2 + " " + "Thank You");
+					"Hi" + " " + email + " " + "your OTP for Password Reset is" + " " + " " + otp + " " + "Thank You");
 
 			System.out.println("Sending........");
 
@@ -326,39 +333,81 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
-	@Override
-	public String EncryptedPassword() {
-		System.out.println("Running EncryptedPassword ");
-		// logger.info("Running EncryptedPassword ");
-		Encoder encoder = Base64.getEncoder();
-		String password = password();
-		String encodeToString = encoder.encodeToString(password.getBytes());
-		System.out.println("EncryptedPassword" + " " + encodeToString);
-		return encodeToString;
-	}
+//	@Override
+//	public String EncryptedPassword() {
+//		System.out.println("Running EncryptedPassword ");
+//		// logger.info("Running EncryptedPassword ");
+//		Encoder encoder = Base64.getEncoder();
+//		String password = password();
+//		String encodeToString = encoder.encodeToString(password.getBytes());
+//		System.out.println("EncryptedPassword" + " " + encodeToString);
+//		return encodeToString;
+//	}
+//
+//	@Override
+//	public String EncryptPassword(String password) {
+//		System.out.println("Running EncryptPassword ");
+//		// logger.info("Running EncryptedPassword ");
+//		Encoder encoder = Base64.getEncoder();
+//		String passwords = password;
+//		String encodeToString = encoder.encodeToString(passwords.getBytes());
+//		System.out.println("EncryptedPassword" + " " + encodeToString);
+//		return encodeToString;
+//
+//	}
+//
+//	@Override
+//	public String DecryptedPassword(String encryptPassword) {
+//		System.out.println("Running DecryptedPassword");
+//		// logger.info("Running DecryptedPassword");
+//		Decoder decoder = Base64.getDecoder();
+//		byte[] decode = decoder.decode(encryptPassword);
+//		String decrypt = new String(decode);
+//		System.out.println("DecryptedPassword" + decrypt);
+//		return decrypt;
+//
+//	}
 
 	@Override
-	public String EncryptPassword(String password) {
-		System.out.println("Running EncryptPassword ");
-		// logger.info("Running EncryptedPassword ");
-		Encoder encoder = Base64.getEncoder();
-		String passwords = password;
-		String encodeToString = encoder.encodeToString(passwords.getBytes());
-		System.out.println("EncryptedPassword" + " " + encodeToString);
-		return encodeToString;
+	public Boolean updateOtpDateAndTimeByMail(Integer otp, LocalDate date, LocalTime time, String email,
+			UserDTO userDTO) {
+		System.out.println(" running on the updateOtpDateAndTimeByMail");
+		System.out.println("otp+++++++"+otp);
 
-	}
+		UserDTO byEmail = userDAO.getByEmail(email);
+		if (byEmail != null) {
+			System.out.println(" running in side the if updateotp");
+			Integer otpGeneration = this.otpGeneration();
+			dateTime = LocalDateTime.now();
+			LocalDate localDate = dateTime.toLocalDate();
+			LocalTime localTime = dateTime.toLocalTime();
+			userDTO.setDate(localDate);
+			userDTO.setTime(localTime);
 
-	@Override
-	public String DecryptedPassword(String encryptPassword) {
-		System.out.println("Running DecryptedPassword");
-		// logger.info("Running DecryptedPassword");
-		Decoder decoder = Base64.getDecoder();
-		byte[] decode = decoder.decode(encryptPassword);
-		String decrypt = new String(decode);
-		System.out.println("DecryptedPassword" + decrypt);
-		return decrypt;
+			userDTO.setOtp(otpGeneration);
+			Boolean byMail = userDAO.updateOtpDateAndTimeByMail(otpGeneration, userDTO.getDate(), userDTO.getTime(), userDTO.getEmail());
+			if(byMail) {
+				
+				
+				Boolean sendOTPMail = sendOTPMail(email, otpGeneration, userDTO);
+				
+				if(sendOTPMail) {
+					
+					System.out.println("otp is sed successfully");
+					
+				}
+				else {
+					
+					System.out.println(" mail is  invalid");
+				}
+			}
+			else {
+				
+				System.out.println(" mail is not matched");
+			}
 
+		}
+		return true;
 	}
 
 }

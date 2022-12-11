@@ -23,7 +23,7 @@
 	background-image:url("https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&w=600");
 	background-repeat:no-repeat;
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	background-size: 100%; }
 	
 	</style>
