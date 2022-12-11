@@ -122,7 +122,7 @@ p {
 			<label>Name</label> <input type="text" name="username" placeholder="Name" >
 			 
 			<label>Mobile Number</label> <input
-				type="text" name="mobileNumber" placeholder="Mobile Number">
+				type="text" name="phoneno" placeholder="Mobile Number">
 				
 				<label>FileName</label><input type="file" name="file"/>
 				
@@ -130,7 +130,7 @@ p {
 
 			<label>Agreement</label> <input type="checkbox" id="termsChkbx "
 				onclick="change_button(this,'sub1')" /> <input type="submit"
-				name="SignUp" value="Sumbit" id="sub1" disabled="disabled">
+				name="SignIn" value="Sumbit" id="sub1" disabled="disabled">
 		
 		</form>
 		<p>
